@@ -1,0 +1,27 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "crons": [],
+  "regions": ["iad1"],
+  "functions": {
+    "app/api/**": {
+      "maxDuration": 300,
+      "memory": 1024
+    },
+    "app/api/inngest/**": {
+      "maxDuration": 900,
+      "memory": 2048
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    }
+  ]
+}
